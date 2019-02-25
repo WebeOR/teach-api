@@ -1,20 +1,30 @@
 const { PORT } = require('../../config');
 
-const bodyParser = require('body-parser');
-const server     = require('restana')({});
+const { json } = require('body-parser');
+const cors     = require('cors');
+const server   = require('restana')({});
 
-server.use(bodyParser.json());
+server.use(json());
+server.use(cors());
 
 // добавить пользователя
-server.post('/call', ({ body } , { send }) => {
+server.post('/call', ({ body }, { send }) => {
   if (body && body.email && body.phone && body.message) {
-    return send('Ура, всё верно!' , 201);
+    return send('Ура, всё верно!', 201);
   }
   return send('Упс... Ошибка в данных!', 500);
 });
 
-server.start(PORT);
-console.log('Server is running at port ' + PORT);
+async function start () {
+  try {
+    await server.start(PORT);
+    console.log('Server is running at port ' + PORT);
+  } catch (error) {
+    console.error('Ошибка запуска сервера - ', error);
+  }
+}
+
+start();
 
 // Пример запроса
 // тип    POST
