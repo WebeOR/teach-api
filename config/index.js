@@ -1,5 +1,3 @@
-require('dotenv').config();
-
-const { PORT } = process.env;
+const { PORT } = require('dotenv').config().parsed;
 
 module.exports = { PORT };
