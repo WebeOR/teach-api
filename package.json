@@ -4,15 +4,16 @@
   "main": "src/server/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/server/index.js"
+    "start": "node src/server/index.js",
+    "dev": "nodemon src/server/index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "restana": "^2.8.0"
   },
   "devDependencies": {
-    "eslint": "^5.13.0",
     "nodemon": "^1.18.9"
   }
 }
